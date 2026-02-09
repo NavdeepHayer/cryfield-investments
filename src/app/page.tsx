@@ -18,14 +18,22 @@ import {
   Mail,
   Clock,
 } from "lucide-react";
+import Image from "next/image";
 import ContactForm from "@/components/ContactForm";
 
 export default function Page() {
   return (
     <>
       {/* ===== HERO ===== */}
-      <section id="hero" className="relative bg-navy-950 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-navy-800/40 via-navy-950 to-navy-950" />
+      <section id="hero" className="relative bg-gray-900 overflow-hidden">
+        <Image
+          src="/images/hero-skyscraper.jpg"
+          alt="Modern architecture"
+          fill
+          className="object-cover opacity-40"
+          priority
+        />
+        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-gray-900/50" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-32 lg:py-44">
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 bg-navy-800/60 border border-navy-700 rounded-full px-4 py-1.5 mb-8">
@@ -87,7 +95,7 @@ export default function Page() {
       </section>
 
       {/* ===== ABOUT ===== */}
-      <section id="about" className="bg-white scroll-mt-20">
+      <section id="about" className="bg-gray-50 scroll-mt-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -121,8 +129,17 @@ export default function Page() {
             </div>
 
             <div className="space-y-8">
-              <div className="bg-navy-50 rounded-2xl p-10">
-                <div className="grid grid-cols-2 gap-6">
+              <div className="relative h-80 rounded-2xl overflow-hidden shadow-xl">
+                <Image
+                  src="/images/building-modern.jpg"
+                  alt="Modern commercial building"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-navy-900/60 to-transparent" />
+              </div>
+              <div className="bg-white rounded-2xl p-8 shadow-sm">
+                <div className="grid grid-cols-2 gap-4">
                   {[
                     { value: "2017", label: "Founded" },
                     { value: "500k+", label: "Sq Ft Built" },
@@ -131,12 +148,12 @@ export default function Page() {
                   ].map((item) => (
                     <div
                       key={item.label}
-                      className="bg-white rounded-lg p-6 text-center shadow-sm"
+                      className="bg-gray-50 rounded-lg p-5 text-center"
                     >
-                      <p className="text-2xl font-bold text-navy-900 mb-1">
+                      <p className="text-xl font-bold text-navy-900 mb-1">
                         {item.value}
                       </p>
-                      <p className="text-navy-500 text-sm">{item.label}</p>
+                      <p className="text-navy-500 text-xs">{item.label}</p>
                     </div>
                   ))}
                 </div>
@@ -147,7 +164,7 @@ export default function Page() {
       </section>
 
       {/* ===== VALUES ===== */}
-      <section className="bg-gray-50">
+      <section className="bg-white">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <div className="max-w-2xl mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
@@ -218,7 +235,7 @@ export default function Page() {
       </section>
 
       {/* ===== SERVICES ===== */}
-      <section id="services" className="bg-white scroll-mt-20">
+      <section id="services" className="bg-gray-50 scroll-mt-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <div className="max-w-2xl mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
@@ -293,8 +310,17 @@ export default function Page() {
       </section>
 
       {/* ===== FUNDS ===== */}
-      <section className="bg-navy-900">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+      <section className="bg-navy-900 relative overflow-hidden">
+        <div className="absolute right-0 top-0 w-1/3 h-full hidden lg:block">
+          <Image
+            src="/images/residential.jpg"
+            alt="Residential development"
+            fill
+            className="object-cover opacity-30"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-navy-900 via-navy-900/80 to-transparent" />
+        </div>
+        <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <div className="max-w-2xl mb-16">
             <h2 className="text-3xl font-bold text-white mb-4">Our Funds</h2>
             <p className="text-navy-300 text-lg">
@@ -354,7 +380,7 @@ export default function Page() {
       </section>
 
       {/* ===== CONTACT ===== */}
-      <section id="contact" className="bg-gray-50 scroll-mt-20">
+      <section id="contact" className="bg-white scroll-mt-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <div className="max-w-2xl mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
