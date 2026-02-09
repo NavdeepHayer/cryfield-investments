@@ -1,4 +1,3 @@
-import Link from "next/link";
 import {
   ArrowRight,
   Building2,
@@ -7,13 +6,25 @@ import {
   MapPin,
   ShieldCheck,
   BarChart3,
+  Target,
+  Eye,
+  Shield,
+  Users,
+  Award,
+  Landmark,
+  Home,
+  Factory,
+  Stethoscope,
+  Mail,
+  Clock,
 } from "lucide-react";
+import ContactForm from "@/components/ContactForm";
 
-export default function Home() {
+export default function Page() {
   return (
     <>
-      {/* Hero */}
-      <section className="relative bg-navy-950 overflow-hidden">
+      {/* ===== HERO ===== */}
+      <section id="hero" className="relative bg-navy-950 overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-navy-800/40 via-navy-950 to-navy-950" />
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-32 lg:py-44">
           <div className="max-w-3xl">
@@ -34,25 +45,25 @@ export default function Home() {
               ensure proper alignment of interest.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/services"
+              <a
+                href="#services"
                 className="inline-flex items-center justify-center gap-2 bg-gold-500 text-navy-950 font-semibold px-8 py-3.5 rounded-md hover:bg-gold-400 transition-colors"
               >
                 Our Services
                 <ArrowRight size={18} />
-              </Link>
-              <Link
-                href="/contact"
+              </a>
+              <a
+                href="#contact"
                 className="inline-flex items-center justify-center gap-2 border border-navy-600 text-white font-medium px-8 py-3.5 rounded-md hover:bg-navy-800/50 transition-colors"
               >
                 Get in Touch
-              </Link>
+              </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Stats */}
+      {/* ===== STATS ===== */}
       <section className="bg-white border-b border-gray-100">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-16">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
@@ -75,64 +86,123 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Overview */}
+      {/* ===== ABOUT ===== */}
+      <section id="about" className="bg-white scroll-mt-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-6">
+                About <span className="text-gold-600">Cryfield</span>
+              </h2>
+              <div className="space-y-4 text-navy-600 leading-relaxed">
+                <p>
+                  Cryfield Investments is a privately owned company specialising
+                  in land acquisition, development, investment and funding in
+                  both private and public sectors. Incorporated in 2017 and based
+                  in London&rsquo;s West End, we have been planning, designing
+                  and delivering innovative development solutions.
+                </p>
+                <p>
+                  Having developed over 500,000 sq ft of residential, commercial,
+                  retail and office space, we have a proven track record of adding
+                  value to clients&rsquo; portfolios and successfully increasing
+                  investments, growing pipeline and providing bespoke exit
+                  solutions for a diverse range of opportunities throughout the
+                  UK and Europe.
+                </p>
+                <p>
+                  We source, invest and manage in businesses that stretch
+                  throughout the UK, with experience ranging from multi-million
+                  pound urban regeneration projects to local social housing
+                  schemes as well as a variety of healthcare, drug research
+                  companies and public safety supply chains.
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-8">
+              <div className="bg-navy-50 rounded-2xl p-10">
+                <div className="grid grid-cols-2 gap-6">
+                  {[
+                    { value: "2017", label: "Founded" },
+                    { value: "500k+", label: "Sq Ft Built" },
+                    { value: "£150m+", label: "Pipeline" },
+                    { value: "20+", label: "Years Experience" },
+                  ].map((item) => (
+                    <div
+                      key={item.label}
+                      className="bg-white rounded-lg p-6 text-center shadow-sm"
+                    >
+                      <p className="text-2xl font-bold text-navy-900 mb-1">
+                        {item.value}
+                      </p>
+                      <p className="text-navy-500 text-sm">{item.label}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ===== VALUES ===== */}
       <section className="bg-gray-50">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
           <div className="max-w-2xl mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
-              A Proven Track Record
+              What Drives Us
             </h2>
             <p className="text-navy-500 text-lg leading-relaxed">
-              We have been planning, designing and delivering innovative
-              development solutions, having developed over 500,000 sq ft of
-              residential, commercial, retail and office space.
+              Our values define how we operate and the relationships we build
+              with investors, partners and communities.
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: Building2,
-                title: "Land Acquisition & Development",
-                description:
-                  "We work with land owners and planners to acquire sites that meet specific briefs, leveraging deep local knowledge of what makes a location desirable.",
-              },
-              {
-                icon: TrendingUp,
-                title: "Investment & Funding",
-                description:
-                  "A proven track record of adding value to clients' portfolios, successfully increasing investments and providing bespoke exit solutions.",
-              },
-              {
-                icon: Handshake,
-                title: "Strategic Partnerships",
-                description:
-                  "Unsurpassed long-standing relationships with planners, occupiers, and investors, and the ability to turn projects around quickly.",
-              },
-              {
-                icon: MapPin,
-                title: "UK & European Reach",
-                description:
-                  "A diverse range of investment, production and development opportunities throughout the UK and Europe.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Healthcare & Supply Chains",
-                description:
-                  "CRF IV Fund is fully resourced to invest in healthcare, drug research companies, and public safety supply chains.",
-              },
-              {
-                icon: BarChart3,
+                icon: Target,
                 title: "Aligned Interests",
                 description:
-                  "We invest our own money alongside external investors to ensure proper alignment of interest across every project.",
+                  "We invest our own money alongside external investors to ensure proper alignment of interest in every project we undertake.",
+              },
+              {
+                icon: Eye,
+                title: "Local Knowledge",
+                description:
+                  "We understand the issues that make a location desirable for a particular project, enabling us to acquire the right sites for the right briefs.",
+              },
+              {
+                icon: Shield,
+                title: "Proven Track Record",
+                description:
+                  "Over 500,000 sq ft of development across residential, commercial, retail and office space demonstrates our consistent delivery.",
+              },
+              {
+                icon: Users,
+                title: "Strong Relationships",
+                description:
+                  "Unsurpassed long-standing relationships with planners, occupiers, and investors built over decades in the industry.",
+              },
+              {
+                icon: Award,
+                title: "Specialist Expertise",
+                description:
+                  "A 20+ year Investment Banking career provides fund diversity, product specialism, and regulatory knowledge.",
+              },
+              {
+                icon: Landmark,
+                title: "Rapid Execution",
+                description:
+                  "Our ability to turn projects around quickly sets us apart, from acquisition through to delivery and exit.",
               },
             ].map((item) => (
               <div
                 key={item.title}
                 className="bg-white rounded-lg p-8 border border-gray-200 hover:border-gold-300 hover:shadow-lg transition-all"
               >
-                <div className="w-12 h-12 bg-navy-50 rounded-lg flex items-center justify-center mb-5">
+                <div className="w-12 h-12 bg-gold-50 rounded-lg flex items-center justify-center mb-5">
                   <item.icon size={24} className="text-gold-600" />
                 </div>
                 <h3 className="text-lg font-semibold text-navy-900 mb-3">
@@ -147,9 +217,94 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Funds CTA */}
+      {/* ===== SERVICES ===== */}
+      <section id="services" className="bg-white scroll-mt-20">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <div className="max-w-2xl mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+              Our <span className="text-gold-600">Services</span>
+            </h2>
+            <p className="text-navy-500 text-lg leading-relaxed">
+              From multi-million pound urban regeneration projects to local
+              social housing schemes, we source, invest and manage businesses
+              that stretch throughout the UK.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {[
+              {
+                icon: Building2,
+                title: "Land Acquisition",
+                description:
+                  "Having local knowledge, we understand the issues that make a location desirable for a particular project. We work with land owners and planners to acquire sites that meet a specific brief.",
+              },
+              {
+                icon: Home,
+                title: "Residential Development",
+                description:
+                  "Delivering quality new residential space through landmark developments. Our CSF II fund has completed a pipeline of over £150m focused on delivering over 300,000 sqft of premium residential property.",
+              },
+              {
+                icon: Factory,
+                title: "Commercial & Retail",
+                description:
+                  "Over 500,000 sq ft of residential, commercial, retail and office space developed. We plan, design and deliver innovative solutions for commercial properties across the UK and Europe.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Investment & Funding",
+                description:
+                  "A proven track record of adding value to clients' portfolios, successfully increasing investments, growing pipeline and providing bespoke exit solutions.",
+              },
+              {
+                icon: Stethoscope,
+                title: "Healthcare Investment",
+                description:
+                  "CRF IV Fund is fully resourced to invest in healthcare, drug research companies, and public safety supply chains.",
+              },
+              {
+                icon: BarChart3,
+                title: "Urban Regeneration",
+                description:
+                  "Experience ranging from multi-million pound urban regeneration projects to local social housing schemes. We transform communities through thoughtful, commercially viable development.",
+              },
+            ].map((service) => (
+              <div
+                key={service.title}
+                className="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gold-300 hover:shadow-lg transition-all"
+              >
+                <div className="w-14 h-14 bg-navy-50 group-hover:bg-gold-50 rounded-lg flex items-center justify-center mb-6 transition-colors">
+                  <service.icon
+                    size={28}
+                    className="text-navy-600 group-hover:text-gold-600 transition-colors"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold text-navy-900 mb-3">
+                  {service.title}
+                </h3>
+                <p className="text-navy-500 text-sm leading-relaxed">
+                  {service.description}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ===== FUNDS ===== */}
       <section className="bg-navy-900">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
+          <div className="max-w-2xl mb-16">
+            <h2 className="text-3xl font-bold text-white mb-4">Our Funds</h2>
+            <p className="text-navy-300 text-lg">
+              Our 20+ year Investment Banking career has provided a foundation
+              for offering fund diversity, product specialism, senior management
+              skills, regulatory knowledge, and client relationships covering
+              both the Private Equity community and Corporate clients.
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
             <div className="bg-navy-800/50 border border-navy-700 rounded-lg p-10">
               <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1 mb-6">
@@ -160,18 +315,18 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-white mb-4">
                 Cryfield Regions Fund
               </h3>
-              <p className="text-navy-300 leading-relaxed mb-6">
-                With local knowledge, we understand the issues that make a
-                location desirable for a particular project. We work with land
-                owners and planners to acquire sites that meet a specific brief.
-                Fully resourced to invest in Healthcare and supply chains.
+              <p className="text-navy-300 leading-relaxed mb-4">
+                Under the Cryfield Regions Fund (CRF IV), having local
+                knowledge, we understand the issues that make a location
+                desirable for a particular project and can work with land owners
+                and planners to acquire sites that meet a specific brief.
               </p>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 text-gold-400 font-medium hover:text-gold-300 transition-colors"
-              >
-                Learn more <ArrowRight size={16} />
-              </Link>
+              <p className="text-navy-300 leading-relaxed">
+                We source, invest and manage in businesses throughout the UK,
+                from multi-million pound urban regeneration projects to local
+                social housing schemes, healthcare, drug research companies and
+                public safety supply chains.
+              </p>
             </div>
 
             <div className="bg-navy-800/50 border border-navy-700 rounded-lg p-10">
@@ -183,41 +338,125 @@ export default function Home() {
               <h3 className="text-2xl font-bold text-white mb-4">
                 Cryfield SouthEast Fund
               </h3>
-              <p className="text-navy-300 leading-relaxed mb-6">
+              <p className="text-navy-300 leading-relaxed mb-4">
                 Completed a pipeline of over &pound;150m, fully funded, with
                 primary focus on delivering over 300,000 sqft of quality new
                 residential space through a string of landmark developments.
               </p>
-              <Link
-                href="/services"
-                className="inline-flex items-center gap-2 text-gold-400 font-medium hover:text-gold-300 transition-colors"
-              >
-                Learn more <ArrowRight size={16} />
-              </Link>
+              <p className="text-navy-300 leading-relaxed">
+                We pride ourselves on unsurpassed long-standing relationships
+                with planners, occupiers, and investors, and our ability to turn
+                projects around quickly.
+              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="bg-white">
+      {/* ===== CONTACT ===== */}
+      <section id="contact" className="bg-gray-50 scroll-mt-20">
         <div className="mx-auto max-w-7xl px-6 lg:px-8 py-24">
-          <div className="bg-navy-950 rounded-2xl p-12 md:p-16 text-center">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Discuss Your Next Project?
+          <div className="max-w-2xl mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">
+              Get in <span className="text-gold-600">Touch</span>
             </h2>
-            <p className="text-navy-300 text-lg max-w-2xl mx-auto mb-8">
-              With over 20 years of investment banking experience and a proven
-              track record, we offer fund diversity, product specialism, and
-              strong client relationships.
+            <p className="text-navy-500 text-lg leading-relaxed">
+              We welcome enquiries from landowners, investors, developers and
+              partners. Reach out to discuss how we can work together.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 bg-gold-500 text-navy-950 font-semibold px-8 py-3.5 rounded-md hover:bg-gold-400 transition-colors"
-            >
-              Contact Us
-              <ArrowRight size={18} />
-            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-16">
+            {/* Contact Info */}
+            <div className="lg:col-span-2">
+              <div className="space-y-8">
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-navy-50 rounded-lg flex items-center justify-center shrink-0">
+                    <Building2 size={20} className="text-gold-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-navy-900 mb-1">
+                      Registered Office
+                    </h3>
+                    <p className="text-navy-500 text-sm leading-relaxed">
+                      Cryfield Investments Ltd
+                      <br />
+                      51 New Cavendish Street
+                      <br />
+                      London, W1G 9TG
+                      <br />
+                      United Kingdom
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-navy-50 rounded-lg flex items-center justify-center shrink-0">
+                    <Mail size={20} className="text-gold-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-navy-900 mb-1">Email</h3>
+                    <a
+                      href="mailto:info@cryfieldinvestments.com"
+                      className="text-gold-600 hover:text-gold-500 text-sm transition-colors"
+                    >
+                      info@cryfieldinvestments.com
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-navy-50 rounded-lg flex items-center justify-center shrink-0">
+                    <MapPin size={20} className="text-gold-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-navy-900 mb-1">
+                      Location
+                    </h3>
+                    <p className="text-navy-500 text-sm leading-relaxed">
+                      Marylebone, Central London
+                      <br />
+                      Near Oxford Circus &amp; Regent&rsquo;s Park
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex items-start gap-4">
+                  <div className="w-12 h-12 bg-navy-50 rounded-lg flex items-center justify-center shrink-0">
+                    <Clock size={20} className="text-gold-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-navy-900 mb-1">
+                      Business Hours
+                    </h3>
+                    <p className="text-navy-500 text-sm leading-relaxed">
+                      Monday &ndash; Friday: 9:00 AM &ndash; 6:00 PM
+                      <br />
+                      Saturday &ndash; Sunday: Closed
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-10 p-6 bg-white rounded-lg border border-gray-200">
+                <p className="text-navy-600 text-sm leading-relaxed">
+                  <span className="font-semibold text-navy-800">
+                    Company Registration:
+                  </span>
+                  <br />
+                  Company No. 11001318
+                  <br />
+                  Registered in England and Wales
+                  <br />
+                  Incorporated 6 October 2017
+                </p>
+              </div>
+            </div>
+
+            {/* Contact Form */}
+            <div className="lg:col-span-3">
+              <ContactForm />
+            </div>
           </div>
         </div>
       </section>

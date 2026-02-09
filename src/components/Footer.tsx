@@ -1,5 +1,4 @@
-import Link from "next/link";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { MapPin, Mail } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -34,14 +33,19 @@ export default function Footer() {
               Quick Links
             </h3>
             <ul className="space-y-3">
-              {["Home", "About", "Services", "Contact"].map((item) => (
-                <li key={item}>
-                  <Link
-                    href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+              {[
+                { name: "Home", href: "#hero" },
+                { name: "About", href: "#about" },
+                { name: "Services", href: "#services" },
+                { name: "Contact", href: "#contact" },
+              ].map((item) => (
+                <li key={item.name}>
+                  <a
+                    href={item.href}
                     className="text-navy-400 hover:text-gold-400 transition-colors text-sm"
                   >
-                    {item}
-                  </Link>
+                    {item.name}
+                  </a>
                 </li>
               ))}
             </ul>
