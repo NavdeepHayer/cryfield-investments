@@ -17,7 +17,7 @@ export default function Header() {
       <nav className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Global">
         <div className="flex items-center justify-between h-20">
           <a href="#hero" className="flex items-center">
-            <Logo height={38} />
+            <Logo height={46} />
           </a>
 
           {/* Desktop nav */}

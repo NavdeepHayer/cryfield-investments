@@ -9,7 +9,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="mb-6">
-              <Logo height={38} />
+              <Logo height={46} />
             </div>
             <p className="text-navy-400 text-sm leading-relaxed">
               A privately owned company specialising in land acquisition,

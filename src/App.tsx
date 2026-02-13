@@ -314,15 +314,15 @@ export default function App() {
               className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
             >
               {values.map((item) => (
-                <StaggerItem key={item.title} variant="flipUp">
-                  <div className="bg-white rounded-lg p-8 border border-gray-200 hover:border-gold-300 hover:shadow-lg transition-all">
+                <StaggerItem key={item.title} variant="flipUp" className="h-full">
+                  <div className="h-full flex flex-col bg-white rounded-lg p-8 border border-gray-200 hover:border-gold-300 hover:shadow-lg transition-all">
                     <div className="w-12 h-12 bg-gold-50 rounded-lg flex items-center justify-center mb-5">
                       <item.icon size={24} className="text-gold-600" />
                     </div>
                     <h3 className="text-lg font-semibold text-navy-900 mb-3">
                       {item.title}
                     </h3>
-                    <p className="text-navy-500 text-sm leading-relaxed">
+                    <p className="text-navy-500 text-sm leading-relaxed flex-grow">
                       {item.description}
                     </p>
                   </div>
@@ -364,8 +364,9 @@ export default function App() {
                 <StaggerItem
                   key={service.title}
                   variant={i % 2 === 0 ? "slideLeft" : "slideRight"}
+                  className="h-full"
                 >
-                  <div className="group bg-white rounded-lg p-8 border border-gray-200 hover:border-gold-300 hover:shadow-lg transition-all">
+                  <div className="h-full flex flex-col group bg-white rounded-lg p-8 border border-gray-200 hover:border-gold-300 hover:shadow-lg transition-all">
                     <div className="w-14 h-14 bg-navy-50 group-hover:bg-gold-50 rounded-lg flex items-center justify-center mb-6 transition-colors">
                       <service.icon
                         size={28}
@@ -375,7 +376,7 @@ export default function App() {
                     <h3 className="text-xl font-semibold text-navy-900 mb-3">
                       {service.title}
                     </h3>
-                    <p className="text-navy-500 text-sm leading-relaxed">
+                    <p className="text-navy-500 text-sm leading-relaxed flex-grow">
                       {service.description}
                     </p>
                   </div>
@@ -422,8 +423,8 @@ export default function App() {
             </BlurIn>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-              <SlideLeft delay={0.15}>
-                <div className="bg-navy-800/50 border border-navy-700 rounded-lg p-10">
+              <SlideLeft delay={0.15} className="h-full">
+                <div className="h-full flex flex-col bg-navy-800/50 border border-navy-700 rounded-lg p-10">
                   <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1 mb-6">
                     <span className="text-gold-400 text-sm font-medium">
                       CRF IV
@@ -439,7 +440,7 @@ export default function App() {
                     owners and planners to acquire sites that meet a specific
                     brief.
                   </p>
-                  <p className="text-navy-300 leading-relaxed">
+                  <p className="text-navy-300 leading-relaxed flex-grow">
                     We source, invest and manage in businesses throughout the UK,
                     from multi-million pound urban regeneration projects to local
                     social housing schemes, healthcare, drug research companies
@@ -448,8 +449,8 @@ export default function App() {
                 </div>
               </SlideLeft>
 
-              <SlideRight delay={0.15}>
-                <div className="bg-navy-800/50 border border-navy-700 rounded-lg p-10">
+              <SlideRight delay={0.15} className="h-full">
+                <div className="h-full flex flex-col bg-navy-800/50 border border-navy-700 rounded-lg p-10">
                   <div className="inline-flex items-center gap-2 bg-gold-500/10 border border-gold-500/20 rounded-full px-4 py-1 mb-6">
                     <span className="text-gold-400 text-sm font-medium">
                       CSF II
@@ -463,7 +464,7 @@ export default function App() {
                     primary focus on delivering over 300,000 sqft of quality new
                     residential space through a string of landmark developments.
                   </p>
-                  <p className="text-navy-300 leading-relaxed">
+                  <p className="text-navy-300 leading-relaxed flex-grow">
                     We pride ourselves on unsurpassed long-standing
                     relationships with planners, occupiers, and investors, and
                     our ability to turn projects around quickly.
