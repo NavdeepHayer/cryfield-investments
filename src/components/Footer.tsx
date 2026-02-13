@@ -1,4 +1,5 @@
 import { MapPin, Mail } from "lucide-react";
+import Logo from "./Logo";
 
 export default function Footer() {
   return (
@@ -8,9 +9,7 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-gold-500 rounded-sm flex items-center justify-center">
-                <span className="text-navy-950 font-bold text-xl">C</span>
-              </div>
+              <Logo size={40} />
               <div>
                 <span className="text-white font-semibold text-lg">
                   Cryfield
