@@ -123,9 +123,9 @@ export default function App() {
           <img
             src="/images/hero-skyscraper.jpg"
             alt="Modern architecture"
-            className="absolute inset-0 w-full h-full object-cover opacity-40"
+            className="absolute inset-0 w-full h-full object-cover opacity-60"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/90 to-gray-900/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-gray-900/30" />
           <ParallaxOrb
             className="bg-gold-500/8 blur-3xl top-20 right-[-100px]"
             speed={0.5}
