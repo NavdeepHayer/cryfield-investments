@@ -8,16 +8,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <div className="flex items-center gap-3 mb-6">
-              <Logo size={40} />
-              <div>
-                <span className="text-white font-semibold text-lg">
-                  Cryfield
-                </span>
-                <span className="text-gold-400 font-light text-lg ml-1">
-                  Investments
-                </span>
-              </div>
+            <div className="mb-6">
+              <Logo height={38} />
             </div>
             <p className="text-navy-400 text-sm leading-relaxed">
               A privately owned company specialising in land acquisition,

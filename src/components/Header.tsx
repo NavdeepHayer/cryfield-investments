@@ -16,16 +16,8 @@ export default function Header() {
     <header className="fixed top-0 left-0 right-0 z-50 bg-navy-950/95 backdrop-blur-sm border-b border-navy-800">
       <nav className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Global">
         <div className="flex items-center justify-between h-20">
-          <a href="#hero" className="flex items-center gap-3">
-            <Logo size={40} />
-            <div>
-              <span className="text-white font-semibold text-lg tracking-wide">
-                Cryfield
-              </span>
-              <span className="text-gold-400 font-light text-lg tracking-wide ml-1">
-                Investments
-              </span>
-            </div>
+          <a href="#hero" className="flex items-center">
+            <Logo height={38} />
           </a>
 
           {/* Desktop nav */}

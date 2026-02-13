@@ -1,42 +1,55 @@
-export default function Logo({ size = 40 }: { size?: number }) {
-  const scale = size / 48;
+export default function Logo({ height = 44 }: { height?: number }) {
+  const width = (height / 48) * 220;
+
   return (
     <svg
-      width={size}
-      height={size}
-      viewBox="0 0 48 48"
+      width={width}
+      height={height}
+      viewBox="0 0 220 48"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      style={{ transform: `scale(${scale > 1 ? 1 : 1})` }}
     >
       {/*
-        Logomark: An abstract building/pinnacle with integrated "C" shape.
-        Three ascending columns form a skyline, with the tallest centre
-        column rising to a pointed apex — suggesting growth, ambition, and
-        architectural excellence. The negative space on the left side of
-        the grouping subtly reads as a "C".
+        Logo: Architectural skyline silhouette blended behind the wordmark.
+        The building columns sit as a subtle backdrop, with the company
+        name layered on top — tying the brand to property development.
       */}
 
-      {/* Left column - shortest */}
-      <rect x="6" y="24" width="9" height="20" rx="1.5" fill="#d4a039" />
+      {/* === SKYLINE BACKDROP (behind text) === */}
+      {/* Tallest tower - left of centre with pointed apex */}
+      <path d="M28 6L34 0L40 6V48H28V6Z" fill="#d4a039" opacity="0.12" />
+      {/* Left building */}
+      <rect x="8" y="18" width="16" height="30" rx="1.5" fill="#d4a039" opacity="0.08" />
+      {/* Right building - tallish */}
+      <rect x="44" y="12" width="14" height="36" rx="1.5" fill="#d4a039" opacity="0.1" />
+      {/* Far right building */}
+      <rect x="62" y="22" width="12" height="26" rx="1.5" fill="#d4a039" opacity="0.06" />
+      {/* Skyline accent lines */}
+      <line x1="0" y1="46" x2="100" y2="46" stroke="#d4a039" strokeWidth="1.5" opacity="0.15" />
 
-      {/* Centre column - tallest, with pointed top */}
-      <path
-        d="M19.5 6L24 2L28.5 6V44H19.5V6Z"
+      {/* === WORDMARK (overlays skyline) === */}
+      <text
+        x="0"
+        y="26"
+        fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        fontWeight="700"
+        fontSize="22"
+        letterSpacing="3"
+        fill="white"
+      >
+        CRYFIELD
+      </text>
+      <text
+        x="1"
+        y="43"
+        fontFamily="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif"
+        fontWeight="300"
+        fontSize="11.5"
+        letterSpacing="6.8"
         fill="#d4a039"
-      />
-
-      {/* Right column - medium */}
-      <rect x="33" y="16" width="9" height="28" rx="1.5" fill="#d4a039" opacity="0.75" />
-
-      {/* Connecting base bar */}
-      <rect x="6" y="41" width="36" height="3" rx="1.5" fill="#d4a039" opacity="0.35" />
-
-      {/* Horizontal accent lines across centre tower — floor lines */}
-      <line x1="20.5" y1="16" x2="27.5" y2="16" stroke="#0a1929" strokeWidth="1" opacity="0.3" />
-      <line x1="20.5" y1="22" x2="27.5" y2="22" stroke="#0a1929" strokeWidth="1" opacity="0.3" />
-      <line x1="20.5" y1="28" x2="27.5" y2="28" stroke="#0a1929" strokeWidth="1" opacity="0.3" />
-      <line x1="20.5" y1="34" x2="27.5" y2="34" stroke="#0a1929" strokeWidth="1" opacity="0.3" />
+      >
+        INVESTMENTS
+      </text>
     </svg>
   );
 }
