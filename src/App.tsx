@@ -1,3 +1,4 @@
+import { useState, useEffect, useCallback } from "react";
 import {
   ArrowRight,
   Building2,
@@ -16,6 +17,7 @@ import {
   Mail,
   Clock,
 } from "lucide-react";
+import { AnimatePresence, motion } from "framer-motion";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import ContactForm from "./components/ContactForm";
@@ -112,6 +114,140 @@ const services = [
   },
 ];
 
+const heroSlides = [
+  {
+    image: "/images/hero-skyscraper.jpg",
+    alt: "Modern architecture",
+    badge: "Established 2017 \u00b7 London",
+    heading: (
+      <>
+        Innovative Development
+        <span className="text-gold-400"> Solutions</span> Across the UK
+      </>
+    ),
+    description:
+      "A privately owned company specialising in land acquisition, development, investment and funding in both private and public sectors. We invest our own money alongside external investors to ensure proper alignment of interest.",
+  },
+  {
+    image: "/images/hero-london-2.jpg",
+    alt: "Aerial view of London with Tower Bridge",
+    badge: "Confide Recte Agens",
+    heading: (
+      <>
+        Have the <span className="text-gold-400">Confidence</span> to Do What
+        Is Right
+      </>
+    ),
+    description:
+      "We believe in building lasting value through integrity, transparency, and a commitment to doing what is right — for our investors, our partners, and the communities we serve.",
+  },
+];
+
+function HeroSlideshow() {
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  const goToNext = useCallback(() => {
+    setActiveSlide((prev) => (prev + 1) % heroSlides.length);
+  }, []);
+
+  useEffect(() => {
+    const timer = setInterval(goToNext, 10000);
+    return () => clearInterval(timer);
+  }, [goToNext]);
+
+  const slide = heroSlides[activeSlide];
+
+  return (
+    <section id="hero" className="relative bg-gray-900 overflow-hidden">
+      {/* Background images with crossfade */}
+      <AnimatePresence mode="popLayout">
+        <motion.img
+          key={activeSlide}
+          src={slide.image}
+          alt={slide.alt}
+          className="absolute inset-0 w-full h-full object-cover opacity-60"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 0.6 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 1.2, ease: "easeInOut" }}
+        />
+      </AnimatePresence>
+
+      <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-gray-900/30" />
+
+      <ParallaxOrb
+        className="bg-gold-500/8 blur-3xl top-20 right-[-100px]"
+        speed={0.5}
+        size={400}
+      />
+      <ParallaxOrb
+        className="bg-navy-400/10 blur-3xl bottom-0 left-[-50px]"
+        speed={0.3}
+        size={300}
+      />
+
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-32 lg:py-44">
+        <div className="max-w-3xl">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSlide}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.8, ease: "easeInOut" }}
+            >
+              <div className="inline-flex items-center gap-2 bg-navy-800/60 border border-navy-700 rounded-full px-4 py-1.5 mb-8">
+                <span className="w-2 h-2 bg-gold-500 rounded-full" />
+                <span className="text-navy-300 text-sm">{slide.badge}</span>
+              </div>
+
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                {slide.heading}
+              </h1>
+
+              <p className="text-navy-300 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
+                {slide.description}
+              </p>
+            </motion.div>
+          </AnimatePresence>
+
+          <div className="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#services"
+              className="inline-flex items-center justify-center gap-2 bg-gold-500 text-navy-950 font-semibold px-8 py-3.5 rounded-md hover:bg-gold-400 transition-colors"
+            >
+              Our Services
+              <ArrowRight size={18} />
+            </a>
+            <a
+              href="#contact"
+              className="inline-flex items-center justify-center gap-2 border border-navy-600 text-white font-medium px-8 py-3.5 rounded-md hover:bg-navy-800/50 transition-colors"
+            >
+              Get in Touch
+            </a>
+          </div>
+
+          {/* Slide indicators */}
+          <div className="flex gap-3 mt-10">
+            {heroSlides.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveSlide(index)}
+                className={`h-1.5 rounded-full transition-all duration-500 ${
+                  index === activeSlide
+                    ? "w-10 bg-gold-500"
+                    : "w-6 bg-white/30 hover:bg-white/50"
+                }`}
+                aria-label={`Go to slide ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function App() {
   return (
     <>
@@ -119,68 +255,7 @@ export default function App() {
       <ScrollProgress />
       <main className="pt-20">
         {/* ===== HERO ===== */}
-        <section id="hero" className="relative bg-gray-900 overflow-hidden">
-          <img
-            src="/images/hero-skyscraper.jpg"
-            alt="Modern architecture"
-            className="absolute inset-0 w-full h-full object-cover opacity-60"
-          />
-          <div className="absolute inset-0 bg-gradient-to-r from-gray-900/95 via-gray-900/70 to-gray-900/30" />
-          <ParallaxOrb
-            className="bg-gold-500/8 blur-3xl top-20 right-[-100px]"
-            speed={0.5}
-            size={400}
-          />
-          <ParallaxOrb
-            className="bg-navy-400/10 blur-3xl bottom-0 left-[-50px]"
-            speed={0.3}
-            size={300}
-          />
-          <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-32 lg:py-44">
-            <div className="max-w-3xl">
-              <BlurIn>
-                <div className="inline-flex items-center gap-2 bg-navy-800/60 border border-navy-700 rounded-full px-4 py-1.5 mb-8">
-                  <span className="w-2 h-2 bg-gold-500 rounded-full" />
-                  <span className="text-navy-300 text-sm">
-                    Established 2017 &middot; London
-                  </span>
-                </div>
-              </BlurIn>
-              <FadeUp delay={0.1}>
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                  Innovative Development
-                  <span className="text-gold-400"> Solutions</span> Across the
-                  UK
-                </h1>
-              </FadeUp>
-              <FadeUp delay={0.25}>
-                <p className="text-navy-300 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
-                  A privately owned company specialising in land acquisition,
-                  development, investment and funding in both private and public
-                  sectors. We invest our own money alongside external investors
-                  to ensure proper alignment of interest.
-                </p>
-              </FadeUp>
-              <FadeUp delay={0.4}>
-                <div className="flex flex-col sm:flex-row gap-4">
-                  <a
-                    href="#services"
-                    className="inline-flex items-center justify-center gap-2 bg-gold-500 text-navy-950 font-semibold px-8 py-3.5 rounded-md hover:bg-gold-400 transition-colors"
-                  >
-                    Our Services
-                    <ArrowRight size={18} />
-                  </a>
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center justify-center gap-2 border border-navy-600 text-white font-medium px-8 py-3.5 rounded-md hover:bg-navy-800/50 transition-colors"
-                  >
-                    Get in Touch
-                  </a>
-                </div>
-              </FadeUp>
-            </div>
-          </div>
-        </section>
+        <HeroSlideshow />
 
         {/* ===== STATS ===== */}
         <section className="bg-white border-b border-gray-100">
