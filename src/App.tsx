@@ -116,19 +116,6 @@ const services = [
 
 const heroSlides = [
   {
-    image: "/images/hero-skyscraper.jpg",
-    alt: "Modern architecture",
-    badge: "Established 2017 \u00b7 London",
-    heading: (
-      <>
-        Innovative Development
-        <span className="text-gold-400"> Solutions</span> Across the UK
-      </>
-    ),
-    description:
-      "A privately owned company specialising in land acquisition, development, investment and funding in both private and public sectors. We invest our own money alongside external investors to ensure proper alignment of interest.",
-  },
-  {
     image: "/images/hero-london-2.jpg",
     alt: "Aerial view of London with Tower Bridge",
     badge: "Confide Recte Agens",
@@ -140,6 +127,19 @@ const heroSlides = [
     ),
     description:
       "We believe in building lasting value through integrity, transparency, and a commitment to doing what is right — for our investors, our partners, and the communities we serve.",
+  },
+  {
+    image: "/images/hero-skyscraper.jpg",
+    alt: "Modern architecture",
+    badge: "Established 2017 \u00b7 London",
+    heading: (
+      <>
+        Innovative Development
+        <span className="text-gold-400"> Solutions</span> Across the UK
+      </>
+    ),
+    description:
+      "A privately owned company specialising in land acquisition, development, investment and funding in both private and public sectors. We invest our own money alongside external investors to ensure proper alignment of interest.",
   },
 ];
 
@@ -158,7 +158,7 @@ function HeroSlideshow() {
   const slide = heroSlides[activeSlide];
 
   return (
-    <section id="hero" className="relative bg-gray-900 overflow-hidden">
+    <section id="hero" className="relative bg-gray-900 overflow-hidden min-h-screen flex flex-col">
       {/* Background images with crossfade */}
       <AnimatePresence mode="popLayout">
         <motion.img
@@ -186,7 +186,7 @@ function HeroSlideshow() {
         size={300}
       />
 
-      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 py-32 lg:py-44">
+      <div className="relative mx-auto max-w-7xl px-6 lg:px-8 flex-1 flex items-center">
         <div className="max-w-3xl">
           <AnimatePresence mode="wait">
             <motion.div
