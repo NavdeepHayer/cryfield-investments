@@ -117,6 +117,7 @@ const heroSlides = [
   {
     image: "/images/hero-skyscraper.jpg",
     alt: "Dramatic upward view of towering skyscrapers",
+    tagline: "Confide Recte Agens",
     heading: (
       <>
         Have the <span className="text-gold-400">Confidence</span> to Do What
@@ -129,6 +130,7 @@ const heroSlides = [
   {
     image: "/images/hero-london-4.jpg",
     alt: "London's iconic St Paul's Cathedral",
+    tagline: "Established 2017 · London",
     heading: (
       <>
         Innovative <span className="text-gold-400">Investment</span> Solutions
@@ -185,36 +187,32 @@ function HeroSlideshow() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 flex-1 flex items-center">
         <div className="max-w-3xl">
-          {/* Persistent motto — stays across all slides */}
-          <div className="flex items-center gap-4 mb-10">
-            <span className="block w-10 h-px bg-gold-500" />
-            <div>
-              <p className="text-gold-400 text-sm md:text-base font-semibold tracking-[0.25em] uppercase">
-                Confide Recte Agens
-              </p>
-              <p className="text-navy-400 text-xs md:text-sm tracking-wide mt-0.5 italic">
-                Have the confidence to do what is right
-              </p>
-            </div>
+          <div className="min-h-[320px] md:min-h-[300px]">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeSlide}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.6, ease: "easeInOut" }}
+              >
+                <div className="flex items-center gap-4 mb-8">
+                  <span className="block w-10 h-px bg-gold-500" />
+                  <p className="text-gold-400 text-sm md:text-base font-semibold tracking-[0.25em] uppercase">
+                    {slide.tagline}
+                  </p>
+                </div>
+
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                  {slide.heading}
+                </h1>
+
+                <p className="text-navy-300 text-lg md:text-xl leading-relaxed max-w-2xl">
+                  {slide.description}
+                </p>
+              </motion.div>
+            </AnimatePresence>
           </div>
-
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={activeSlide}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
-            >
-              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                {slide.heading}
-              </h1>
-
-              <p className="text-navy-300 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
-                {slide.description}
-              </p>
-            </motion.div>
-          </AnimatePresence>
 
           <div className="flex flex-col sm:flex-row gap-4">
             <a
