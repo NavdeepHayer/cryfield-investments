@@ -187,65 +187,62 @@ function HeroSlideshow() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 flex-1 flex items-center">
         <div className="max-w-3xl">
-          <div className="relative h-[420px] sm:h-[380px] md:h-[360px] lg:h-[340px]">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeSlide}
-                className="absolute inset-0"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.6, ease: "easeInOut" }}
-              >
-                <div className="flex items-center gap-4 mb-8">
-                  <span className="block w-10 h-px bg-gold-500" />
-                  <p className="text-gold-400 text-sm md:text-base font-semibold tracking-[0.25em] uppercase">
-                    {slide.tagline}
-                  </p>
-                </div>
-
-                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-                  {slide.heading}
-                </h1>
-
-                <p className="text-navy-300 text-lg md:text-xl leading-relaxed max-w-2xl">
-                  {slide.description}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSlide}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <span className="block w-10 h-px bg-gold-500" />
+                <p className="text-gold-400 text-sm md:text-base font-semibold tracking-[0.25em] uppercase">
+                  {slide.tagline}
                 </p>
-              </motion.div>
-            </AnimatePresence>
-          </div>
+              </div>
 
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#services"
-              className="inline-flex items-center justify-center gap-2 bg-gold-500 text-navy-950 font-semibold px-8 py-3.5 rounded-md hover:bg-gold-400 transition-colors"
-            >
-              Our Services
-              <ArrowRight size={18} />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 border border-navy-600 text-white font-medium px-8 py-3.5 rounded-md hover:bg-navy-800/50 transition-colors"
-            >
-              Get in Touch
-            </a>
-          </div>
+              <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
+                {slide.heading}
+              </h1>
 
-          {/* Slide indicators */}
-          <div className="flex gap-3 mt-10">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveSlide(index)}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  index === activeSlide
-                    ? "w-10 bg-gold-500"
-                    : "w-6 bg-white/30 hover:bg-white/50"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
+              <p className="text-navy-300 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
+                {slide.description}
+              </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center gap-2 bg-gold-500 text-navy-950 font-semibold px-8 py-3.5 rounded-md hover:bg-gold-400 transition-colors"
+                >
+                  Our Services
+                  <ArrowRight size={18} />
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-2 border border-navy-600 text-white font-medium px-8 py-3.5 rounded-md hover:bg-navy-800/50 transition-colors"
+                >
+                  Get in Touch
+                </a>
+              </div>
+
+              {/* Slide indicators */}
+              <div className="flex gap-3 mt-10">
+                {heroSlides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveSlide(index)}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${
+                      index === activeSlide
+                        ? "w-10 bg-gold-500"
+                        : "w-6 bg-white/30 hover:bg-white/50"
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </section>
