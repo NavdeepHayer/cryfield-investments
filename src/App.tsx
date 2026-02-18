@@ -187,10 +187,11 @@ function HeroSlideshow() {
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8 flex-1 flex items-center">
         <div className="max-w-3xl">
-          <div className="min-h-[320px] md:min-h-[300px]">
+          <div className="relative h-[280px] sm:h-[260px] md:h-[280px] lg:h-[260px]">
             <AnimatePresence mode="wait">
               <motion.div
                 key={activeSlide}
+                className="absolute inset-0"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
