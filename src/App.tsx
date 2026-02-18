@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Building2,
   TrendingUp,
-  MapPin,
   BarChart3,
   Target,
   Eye,
@@ -116,9 +115,9 @@ const services = [
 
 const heroSlides = [
   {
-    image: "/images/hero-london-2.jpg",
-    alt: "Aerial view of London with Tower Bridge",
-    badge: "Confide Recte Agens",
+    image: "/images/hero-skyscraper.jpg",
+    alt: "Dramatic upward view of towering skyscrapers",
+    tagline: "Confide Recte Agens",
     heading: (
       <>
         Have the <span className="text-gold-400">Confidence</span> to Do What
@@ -126,16 +125,16 @@ const heroSlides = [
       </>
     ),
     description:
-      "We believe in building lasting value through integrity, transparency, and a commitment to doing what is right — for our investors, our partners, and the communities we serve.",
+      "Bold decisions built on integrity. We stand behind every investment with transparency, conviction, and an unwavering commitment to doing what is right.",
   },
   {
-    image: "/images/hero-skyscraper.jpg",
-    alt: "Modern architecture",
-    badge: "Established 2017 \u00b7 London",
+    image: "/images/hero-london-4.jpg",
+    alt: "London's iconic St Paul's Cathedral",
+    tagline: "Established 2017 · London",
     heading: (
       <>
-        Innovative Development
-        <span className="text-gold-400"> Solutions</span> Across the UK
+        Innovative <span className="text-gold-400">Investment</span> Solutions
+        Across the UK
       </>
     ),
     description:
@@ -191,14 +190,16 @@ function HeroSlideshow() {
           <AnimatePresence mode="wait">
             <motion.div
               key={activeSlide}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.8, ease: "easeInOut" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6, ease: "easeInOut" }}
             >
-              <div className="inline-flex items-center gap-2 bg-navy-800/60 border border-navy-700 rounded-full px-4 py-1.5 mb-8">
-                <span className="w-2 h-2 bg-gold-500 rounded-full" />
-                <span className="text-navy-300 text-sm">{slide.badge}</span>
+              <div className="flex items-center gap-4 mb-8">
+                <span className="block w-10 h-px bg-gold-500" />
+                <p className="text-gold-400 text-sm md:text-base font-semibold tracking-[0.25em] uppercase">
+                  {slide.tagline}
+                </p>
               </div>
 
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
@@ -208,40 +209,40 @@ function HeroSlideshow() {
               <p className="text-navy-300 text-lg md:text-xl leading-relaxed mb-10 max-w-2xl">
                 {slide.description}
               </p>
+
+              <div className="flex flex-col sm:flex-row gap-4">
+                <a
+                  href="#services"
+                  className="inline-flex items-center justify-center gap-2 bg-gold-500 text-navy-950 font-semibold px-8 py-3.5 rounded-md hover:bg-gold-400 transition-colors"
+                >
+                  Our Services
+                  <ArrowRight size={18} />
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center justify-center gap-2 border border-navy-600 text-white font-medium px-8 py-3.5 rounded-md hover:bg-navy-800/50 transition-colors"
+                >
+                  Get in Touch
+                </a>
+              </div>
+
+              {/* Slide indicators */}
+              <div className="flex gap-3 mt-10">
+                {heroSlides.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setActiveSlide(index)}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${
+                      index === activeSlide
+                        ? "w-10 bg-gold-500"
+                        : "w-6 bg-white/30 hover:bg-white/50"
+                    }`}
+                    aria-label={`Go to slide ${index + 1}`}
+                  />
+                ))}
+              </div>
             </motion.div>
           </AnimatePresence>
-
-          <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href="#services"
-              className="inline-flex items-center justify-center gap-2 bg-gold-500 text-navy-950 font-semibold px-8 py-3.5 rounded-md hover:bg-gold-400 transition-colors"
-            >
-              Our Services
-              <ArrowRight size={18} />
-            </a>
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center gap-2 border border-navy-600 text-white font-medium px-8 py-3.5 rounded-md hover:bg-navy-800/50 transition-colors"
-            >
-              Get in Touch
-            </a>
-          </div>
-
-          {/* Slide indicators */}
-          <div className="flex gap-3 mt-10">
-            {heroSlides.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveSlide(index)}
-                className={`h-1.5 rounded-full transition-all duration-500 ${
-                  index === activeSlide
-                    ? "w-10 bg-gold-500"
-                    : "w-6 bg-white/30 hover:bg-white/50"
-                }`}
-                aria-label={`Go to slide ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
       </div>
     </section>
@@ -614,24 +615,6 @@ export default function App() {
                         >
                           info@cryfieldinvestments.com
                         </a>
-                      </div>
-                    </div>
-                  </StaggerItem>
-
-                  <StaggerItem variant="slideLeft">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-navy-50 rounded-lg flex items-center justify-center shrink-0">
-                        <MapPin size={20} className="text-gold-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-navy-900 mb-1">
-                          Location
-                        </h3>
-                        <p className="text-navy-500 text-sm leading-relaxed">
-                          Marylebone, Central London
-                          <br />
-                          Near Oxford Circus &amp; Regent&rsquo;s Park
-                        </p>
                       </div>
                     </div>
                   </StaggerItem>
