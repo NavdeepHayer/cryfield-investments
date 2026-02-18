@@ -3,7 +3,6 @@ import {
   ArrowRight,
   Building2,
   TrendingUp,
-  MapPin,
   BarChart3,
   Target,
   Eye,
@@ -116,8 +115,8 @@ const services = [
 
 const heroSlides = [
   {
-    image: "/images/hero-london-2.jpg",
-    alt: "Aerial view of London with Tower Bridge",
+    image: "/images/hero-skyscraper.jpg",
+    alt: "Dramatic upward view of towering skyscrapers",
     badge: "Confide Recte Agens",
     heading: (
       <>
@@ -126,16 +125,16 @@ const heroSlides = [
       </>
     ),
     description:
-      "We believe in building lasting value through integrity, transparency, and a commitment to doing what is right — for our investors, our partners, and the communities we serve.",
+      "Bold decisions built on integrity. We stand behind every investment with transparency, conviction, and an unwavering commitment to doing what is right.",
   },
   {
-    image: "/images/hero-skyscraper.jpg",
-    alt: "Modern architecture",
+    image: "/images/hero-london-4.jpg",
+    alt: "London's iconic St Paul's Cathedral",
     badge: "Established 2017 \u00b7 London",
     heading: (
       <>
-        Innovative Development
-        <span className="text-gold-400"> Solutions</span> Across the UK
+        Innovative <span className="text-gold-400">Investment</span> Solutions
+        Across the UK
       </>
     ),
     description:
@@ -614,24 +613,6 @@ export default function App() {
                         >
                           info@cryfieldinvestments.com
                         </a>
-                      </div>
-                    </div>
-                  </StaggerItem>
-
-                  <StaggerItem variant="slideLeft">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-navy-50 rounded-lg flex items-center justify-center shrink-0">
-                        <MapPin size={20} className="text-gold-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-navy-900 mb-1">
-                          Location
-                        </h3>
-                        <p className="text-navy-500 text-sm leading-relaxed">
-                          Marylebone, Central London
-                          <br />
-                          Near Oxford Circus &amp; Regent&rsquo;s Park
-                        </p>
                       </div>
                     </div>
                   </StaggerItem>
