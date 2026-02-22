@@ -27,7 +27,6 @@ import {
   BlurIn,
   FlipUp,
   RotateIn,
-  ScaleIn,
   StaggerContainer,
   StaggerItem,
   AnimatedStat,
@@ -315,11 +314,13 @@ export default function App() {
                       opportunities throughout the UK and Europe.
                     </p>
                     <p>
-                      We source, invest and manage in businesses that stretch
-                      throughout the UK, with experience ranging from
-                      multi-million pound urban regeneration projects to local
-                      social housing schemes as well as a variety of healthcare,
-                      drug research companies and public safety supply chains.
+                      Our investment platform encompasses hotels, student
+                      accommodation, offices and other income-generating real
+                      estate assets across the UK. We target fundamentally sound
+                      but mispriced or transitional assets, applying disciplined
+                      underwriting, structured capital deployment and proactive
+                      asset management to enhance performance and generate
+                      sustainable, risk-adjusted returns for our investors.
                     </p>
                   </div>
                 </div>
@@ -507,20 +508,22 @@ export default function App() {
                     </span>
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-4">
-                    Cryfield Regions Fund
+                    Cryfield Capital Fund
                   </h3>
                   <p className="text-navy-300 leading-relaxed mb-4">
-                    Under the Cryfield Regions Fund (CRF IV), having local
-                    knowledge, we understand the issues that make a location
-                    desirable for a particular project and can work with land
-                    owners and planners to acquire sites that meet a specific
-                    brief.
+                    Under Cryfield Capital, we combine deep market knowledge
+                    with disciplined capital deployment to identify and
+                    reposition underperforming and overlooked real estate assets.
                   </p>
                   <p className="text-navy-300 leading-relaxed flex-grow">
-                    We source, invest and manage in businesses throughout the UK,
-                    from multi-million pound urban regeneration projects to local
-                    social housing schemes, healthcare, drug research companies
-                    and public safety supply chains.
+                    Through our SAVE approach &ndash; Stranded Assets Value
+                    Enhancement &ndash; we transform properties with untapped
+                    potential through strategic capital investment and active
+                    asset enhancement. By embedding ESG principles alongside
+                    structured execution and rigorous underwriting, we convert
+                    complex or transitional assets into resilient,
+                    high-performing investments designed to deliver sustainable,
+                    long-term returns.
                   </p>
                 </div>
               </SlideLeft>
@@ -638,21 +641,6 @@ export default function App() {
                   </StaggerItem>
                 </StaggerContainer>
 
-                <ScaleIn delay={0.3}>
-                  <div className="mt-10 p-6 bg-gray-50 rounded-lg border border-gray-200">
-                    <p className="text-navy-600 text-sm leading-relaxed">
-                      <span className="font-semibold text-navy-800">
-                        Company Registration:
-                      </span>
-                      <br />
-                      Company No. 11001318
-                      <br />
-                      Registered in England and Wales
-                      <br />
-                      Incorporated 6 October 2017
-                    </p>
-                  </div>
-                </ScaleIn>
               </div>
 
               {/* Contact Form */}
