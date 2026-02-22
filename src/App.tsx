@@ -14,7 +14,6 @@ import {
   Factory,
   Stethoscope,
   Mail,
-  Clock,
 } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import Header from "./components/Header";
@@ -622,23 +621,6 @@ export default function App() {
                     </div>
                   </StaggerItem>
 
-                  <StaggerItem variant="slideLeft">
-                    <div className="flex items-start gap-4">
-                      <div className="w-12 h-12 bg-navy-50 rounded-lg flex items-center justify-center shrink-0">
-                        <Clock size={20} className="text-gold-600" />
-                      </div>
-                      <div>
-                        <h3 className="font-semibold text-navy-900 mb-1">
-                          Business Hours
-                        </h3>
-                        <p className="text-navy-500 text-sm leading-relaxed">
-                          Monday &ndash; Friday: 9:00 AM &ndash; 6:00 PM
-                          <br />
-                          Saturday &ndash; Sunday: Closed
-                        </p>
-                      </div>
-                    </div>
-                  </StaggerItem>
                 </StaggerContainer>
 
               </div>

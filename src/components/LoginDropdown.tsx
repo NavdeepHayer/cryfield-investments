@@ -123,7 +123,7 @@ export default function LoginDropdown({ mode, onClose, containerRef }: LoginDrop
   }
 
   return (
-    <div className="fixed inset-0 z-[60]">
+    <div className="fixed inset-0 z-[60] flex items-center justify-center p-4">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -137,7 +137,7 @@ export default function LoginDropdown({ mode, onClose, containerRef }: LoginDrop
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ duration: 0.2, ease: "easeOut" }}
-        className="absolute inset-x-4 top-1/2 -translate-y-1/2 max-w-sm mx-auto bg-navy-900 border border-navy-800 rounded-xl p-6 shadow-2xl"
+        className="relative w-full max-w-sm bg-navy-900 border border-navy-800 rounded-xl p-6 shadow-2xl"
       >
         <button
           onClick={onClose}
