@@ -1,4 +1,4 @@
-const ALLOWED_ORIGIN = Deno.env.get("ALLOWED_ORIGIN") ?? "*";
+const ALLOWED_ORIGIN = Deno.env.get("CRYFIELD_ALLOWED_ORIGIN") ?? "*";
 
 const corsHeaders: Record<string, string> = {
   "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
@@ -96,9 +96,9 @@ Deno.serve(async (req: Request) => {
     return jsonResponse({ error: "Invalid email address" }, 400);
   }
 
-  const RESEND_API_KEY = Deno.env.get("RESEND_API_KEY");
-  const RECIPIENT_EMAIL = Deno.env.get("RECIPIENT_EMAIL");
-  const FROM_EMAIL = Deno.env.get("FROM_EMAIL");
+  const RESEND_API_KEY = Deno.env.get("CRYFIELD_RESEND_API_KEY");
+  const RECIPIENT_EMAIL = Deno.env.get("CRYFIELD_RECIPIENT_EMAIL");
+  const FROM_EMAIL = Deno.env.get("CRYFIELD_FROM_EMAIL");
 
   if (!RESEND_API_KEY || !RECIPIENT_EMAIL || !FROM_EMAIL) {
     console.error("Missing environment variables");
