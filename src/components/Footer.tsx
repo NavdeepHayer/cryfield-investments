@@ -49,7 +49,7 @@ export default function Footer() {
             </h3>
             <ul className="space-y-3">
               <li className="text-navy-400 text-sm">
-                Cryfield Regions Fund (CRF IV)
+                Cryfield Capital Fund
               </li>
               <li className="text-navy-400 text-sm">
                 Cryfield SouthEast Fund (CSF II)
