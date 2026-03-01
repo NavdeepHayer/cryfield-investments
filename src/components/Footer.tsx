@@ -74,10 +74,10 @@ export default function Footer() {
               <li className="flex items-center gap-3 text-sm">
                 <Mail size={16} className="text-gold-500 shrink-0" />
                 <a
-                  href="mailto:info@cryfieldinvestments.com"
+                  href="mailto:info@cryfieldinvestments.co.uk"
                   className="hover:text-gold-400 transition-colors"
                 >
-                  info@cryfieldinvestments.com
+                  info@cryfieldinvestments.co.uk
                 </a>
               </li>
             </ul>
