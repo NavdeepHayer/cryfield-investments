@@ -612,10 +612,10 @@ export default function App() {
                           Email
                         </h3>
                         <a
-                          href="mailto:info@cryfieldinvestments.com"
+                          href="mailto:info@cryfieldinvestments.co.uk"
                           className="text-gold-600 hover:text-gold-500 text-sm transition-colors"
                         >
-                          info@cryfieldinvestments.com
+                          info@cryfieldinvestments.co.uk
                         </a>
                       </div>
                     </div>
