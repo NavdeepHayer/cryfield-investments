@@ -1,9 +1,13 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
+
+const MIN_MESSAGE_LENGTH = 20;
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  // Sent with the form so the server can tell people from instant-submit bots.
+  const mountedAt = useRef(Date.now());
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -17,6 +21,8 @@ export default function ContactForm() {
       email: formData.get("email") as string,
       subject: formData.get("subject") as string,
       message: formData.get("message") as string,
+      referralCode: formData.get("referralCode") as string,
+      elapsedMs: Date.now() - mountedAt.current,
     };
 
     try {
@@ -75,6 +81,21 @@ export default function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
+      {/* Honeypot: invisible to people, filled in by bots. Leave it empty. */}
+      <div
+        className="absolute -left-[9999px] h-0 w-0 overflow-hidden"
+        aria-hidden="true"
+      >
+        <label htmlFor="referralCode">Leave this field empty</label>
+        <input
+          type="text"
+          id="referralCode"
+          name="referralCode"
+          tabIndex={-1}
+          autoComplete="off"
+        />
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div>
           <label
@@ -88,6 +109,7 @@ export default function ContactForm() {
             id="firstName"
             name="firstName"
             required
+            maxLength={60}
             className="w-full px-4 py-3 border border-gray-300 rounded-md text-navy-900 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
             placeholder="John"
           />
@@ -104,6 +126,7 @@ export default function ContactForm() {
             id="lastName"
             name="lastName"
             required
+            maxLength={60}
             className="w-full px-4 py-3 border border-gray-300 rounded-md text-navy-900 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent"
             placeholder="Smith"
           />
@@ -160,6 +183,8 @@ export default function ContactForm() {
           name="message"
           rows={6}
           required
+          minLength={MIN_MESSAGE_LENGTH}
+          maxLength={5000}
           className="w-full px-4 py-3 border border-gray-300 rounded-md text-navy-900 text-sm focus:outline-none focus:ring-2 focus:ring-gold-500 focus:border-transparent resize-none"
           placeholder="Tell us about your project or enquiry..."
         />

@@ -1,17 +1,27 @@
-const ALLOWED_ORIGIN = Deno.env.get("CRYFIELD_ALLOWED_ORIGIN") ?? "*";
+import {
+  type ContactFields,
+  isOriginAllowed,
+  parseAllowedOrigins,
+  screenSubmission,
+} from "./spam.ts";
 
-const corsHeaders: Record<string, string> = {
-  "Access-Control-Allow-Origin": ALLOWED_ORIGIN,
-  "Access-Control-Allow-Headers":
-    "Content-Type, Authorization, x-client-info, apikey",
-  "Access-Control-Allow-Methods": "POST, OPTIONS",
-};
+const ALLOWED_ORIGINS = parseAllowedOrigins(
+  Deno.env.get("CRYFIELD_ALLOWED_ORIGIN"),
+);
 
-function jsonResponse(body: Record<string, unknown>, status: number) {
-  return new Response(JSON.stringify(body), {
-    status,
-    headers: { ...corsHeaders, "Content-Type": "application/json" },
-  });
+function corsHeadersFor(origin: string | null): Record<string, string> {
+  const allowAny = ALLOWED_ORIGINS.includes("*");
+  return {
+    "Access-Control-Allow-Origin": allowAny
+      ? "*"
+      : origin && isOriginAllowed(origin, ALLOWED_ORIGINS)
+        ? origin
+        : ALLOWED_ORIGINS[0],
+    "Access-Control-Allow-Headers":
+      "Content-Type, Authorization, x-client-info, apikey",
+    "Access-Control-Allow-Methods": "POST, OPTIONS",
+    ...(allowAny ? {} : { Vary: "Origin" }),
+  };
 }
 
 function escapeHtml(str: string): string {
@@ -22,15 +32,7 @@ function escapeHtml(str: string): string {
     .replace(/"/g, "&quot;");
 }
 
-interface ContactPayload {
-  firstName: string;
-  lastName: string;
-  email: string;
-  subject: string;
-  message: string;
-}
-
-function buildEmailHtml(data: ContactPayload): string {
+function buildEmailHtml(data: ContactFields): string {
   return `<!DOCTYPE html>
 <html>
 <head><meta charset="utf-8"></head>
@@ -65,6 +67,16 @@ function buildEmailHtml(data: ContactPayload): string {
 }
 
 Deno.serve(async (req: Request) => {
+  const origin = req.headers.get("Origin");
+  const corsHeaders = corsHeadersFor(origin);
+
+  function jsonResponse(body: Record<string, unknown>, status: number) {
+    return new Response(JSON.stringify(body), {
+      status,
+      headers: { ...corsHeaders, "Content-Type": "application/json" },
+    });
+  }
+
   if (req.method === "OPTIONS") {
     return new Response(null, { status: 204, headers: corsHeaders });
   }
@@ -73,27 +85,35 @@ Deno.serve(async (req: Request) => {
     return jsonResponse({ error: "Method not allowed" }, 405);
   }
 
-  let body: ContactPayload;
+  // Browsers always send Origin on this request, so a missing or foreign one
+  // means the request did not come from the website's form.
+  if (!isOriginAllowed(origin, ALLOWED_ORIGINS)) {
+    console.log("Blocked submission: origin not allowed:", origin);
+    return jsonResponse({ error: "Forbidden" }, 403);
+  }
+
+  let body: unknown;
   try {
     body = await req.json();
   } catch {
     return jsonResponse({ error: "Invalid JSON" }, 400);
   }
 
-  const { firstName, lastName, email, subject, message } = body;
+  const verdict = screenSubmission(body);
 
-  if (
-    !firstName?.trim() ||
-    !lastName?.trim() ||
-    !email?.trim() ||
-    !subject?.trim() ||
-    !message?.trim()
-  ) {
-    return jsonResponse({ error: "All fields are required" }, 400);
+  if (verdict.action === "reject") {
+    return jsonResponse({ error: verdict.error }, 400);
   }
 
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-    return jsonResponse({ error: "Invalid email address" }, 400);
+  if (verdict.action === "drop") {
+    console.log("Dropped submission as spam:", verdict.reason);
+    return jsonResponse({ success: true }, 200);
+  }
+
+  const { fields, flags } = verdict;
+  const subjectPrefix = flags.length > 0 ? "[Possible spam] " : "";
+  if (flags.length > 0) {
+    console.log("Flagged submission:", flags.join("; "));
   }
 
   const RESEND_API_KEY = Deno.env.get("CRYFIELD_RESEND_API_KEY");
@@ -114,9 +134,9 @@ Deno.serve(async (req: Request) => {
     body: JSON.stringify({
       from: FROM_EMAIL,
       to: [RECIPIENT_EMAIL],
-      reply_to: email,
-      subject: `Contact Form: ${subject}`,
-      html: buildEmailHtml({ firstName, lastName, email, subject, message }),
+      reply_to: fields.email,
+      subject: `${subjectPrefix}Contact Form: ${fields.subject}`,
+      html: buildEmailHtml(fields),
     }),
   });
 
