@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 
 const MIN_MESSAGE_LENGTH = 20;
+const MIN_MESSAGE_LETTERS = 10;
+const MIN_FILL_TIME_MS = 3000;
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false);
@@ -24,6 +26,26 @@ export default function ContactForm() {
       referralCode: formData.get("referralCode") as string,
       elapsedMs: Date.now() - mountedAt.current,
     };
+
+    // Spam screening, mirrored by the edge function. These run here as well so
+    // the form is protected even when the function has not been redeployed.
+    const message = payload.message.trim();
+    const letters = message.match(/\p{L}/gu)?.length ?? 0;
+    if (message.length < MIN_MESSAGE_LENGTH || letters < MIN_MESSAGE_LETTERS) {
+      setError(
+        `Please tell us a little more about your enquiry (at least ${MIN_MESSAGE_LENGTH} characters).`
+      );
+      setLoading(false);
+      return;
+    }
+
+    // Only a bot fills the hidden field or submits this quickly. Show the
+    // success screen without sending, so it gets no hint about what failed.
+    if (payload.referralCode || payload.elapsedMs < MIN_FILL_TIME_MS) {
+      setSubmitted(true);
+      setLoading(false);
+      return;
+    }
 
     try {
       const res = await fetch(import.meta.env.VITE_CONTACT_FUNCTION_URL, {
